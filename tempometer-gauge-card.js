@@ -237,7 +237,26 @@ class TempometerGaugeCard extends HTMLElement {
                 <path fill="red" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
             </svg>
         </div>
-        <div class="gauge-data">
+        <script>
+	  let s="<svg id=\"svg_max\" style=\"margin-right: 90%; width: 18px;height: 18px; margin-top: -12px; padding-bottom:10px;\" viewBox=\"0 0 24 24\">"+
+		"<title id=\"svg_max_title\"></title>"+
+		"<path fill=\"gray\" d=\"M6,9L18,9L18,10L6,10L6,9Z\" />"+
+		"</svg>";
+
+	  const turn0 = 180/(config.max-config.min);
+
+	  let i=1;
+	  while (i<=3) {
+	    let div = document.createElement('div');
+	    div.id="dsh"+i;
+	    div.class="gauge-f";
+	    let turncur=i*turn0;
+	    div.style.transform = "rotate(${turncur}deg)";
+	    div.innerHTML = s+turncur;
+		document.body.append(div);
+	    i++;
+	</script>
+	<div class="gauge-data">
             <div id="percent"></div>
             <div id="title"></div>
         </div>
